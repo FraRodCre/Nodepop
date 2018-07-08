@@ -1,6 +1,20 @@
 {
 "users": [
     {
+        "name": "Federico",
+        "firstSurname": "Narváez",
+        "secondSurname": "Florencio",
+        "birthday": "2018-07-01T23:28:56.782Z",
+        "country": "España",
+        "province": "Madrid",
+        "city": "Madrid",
+        "email":"test1@prueba.com",
+        "password": "PassW@rd1",
+        "cypheredOptions": {},
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    },
+    {
         "name": "Juan",
         "firstSurname": "Narváez",
         "secondSurname": "Florencio",
@@ -8,8 +22,9 @@
         "country": "España",
         "province": "Sevilla",
         "city": "Sevilla",
-        "email":"test1@prueba.com",
-        "password": "String",
+        "email":"test2@prueba.com",
+        "password": "PassW@rd2",
+        "cypheredOptions": {},
         "modifiedAt": "2018-07-01T23:28:56.782Z",
         "createdAt": "2018-07-01T23:28:56.782Z"
     },
@@ -21,13 +36,25 @@
         "country": "España",
         "province": "Zaragoza",
         "city": "Zaragoza",
-        "email":"test2@prueba.com",
-        "password": "String",
+        "email":"test3@prueba.com",
+        "password": "PassW@rd3",
+        "cypheredOptions": {},
         "modifiedAt": "2018-07-01T23:28:56.782Z",
         "createdAt": "2018-07-01T23:28:56.782Z"
     }
 ],
 "advertisements": [
+    {
+        "name": "coche",
+        "price": 5000,
+        "photo": ["images/anuncios/coche.jpg"], 
+        "sale": true,
+        "user": {},
+        "tags": [ "lifestyle", "motor"],
+        "datePublished": "2018-07-01T23:28:56.782Z",
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    },
     {
         "name": "Bicicleta",
         "price": 230.15,
