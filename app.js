@@ -9,6 +9,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Load translation library
+var i18n = require('i18n');
+i18n.configure({
+  locales:['es', 'en'],
+  directory: __dirname + '/locales'
+  
+});
+app.use(i18n.init);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -18,6 +27,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/*********** Connection Database (MongoDB) *****************/
+const connectionDB = require('./lib/connectionDatabase');
+
+/*************** API ROUTES ***************/
+app.use('/api/1.0/users', require('./routes/api/v1.0/users'));
+app.use('/api/1.0/advertisements',require('./routes/api/v1.0/advertisements'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -37,5 +53,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
