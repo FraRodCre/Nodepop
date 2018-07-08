@@ -1,0 +1,53 @@
+{
+"users": [
+    {
+        "name": "Juan",
+        "firstSurname": "Narváez",
+        "secondSurname": "Florencio",
+        "birthday": "2018-07-01T23:28:56.782Z",
+        "country": "España",
+        "province": "Sevilla",
+        "city": "Sevilla",
+        "email":"test1@prueba.com",
+        "password": "String",
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    },
+    {
+        "name": "Roberto",
+        "firstSurname": "Gil",
+        "secondSurname": "Gracia",
+        "birthday": "2018-07-01T23:28:56.782Z",
+        "country": "España",
+        "province": "Zaragoza",
+        "city": "Zaragoza",
+        "email":"test2@prueba.com",
+        "password": "String",
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    }
+],
+"advertisements": [
+    {
+        "name": "Bicicleta",
+        "price": 230.15,
+        "photo": ["images/anuncios/bici.jpg"], 
+        "sale": true,
+        "user": {},
+        "tags": [ "lifestyle", "motor"],
+        "datePublished": "2018-07-01T23:28:56.782Z",
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    },
+    {
+        "name": "iPhone 3GS",
+        "price": 50.00,
+        "photo": ["images/anuncios/iphone.png"], 
+        "sale": false,
+        "user":{},
+        "tags": [ "lifestyle", "mobile"],
+        "datePublished": "2018-07-01T23:28:56.782Z",
+        "modifiedAt": "2018-07-01T23:28:56.782Z",
+        "createdAt": "2018-07-01T23:28:56.782Z"
+    }]
+}
