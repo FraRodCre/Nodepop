@@ -13,19 +13,19 @@
  *********************************************************************************************************
  * express - Import framework express. Contain all methods of express.                                   *
  * router - It's the router for users. It's an isolated instance of middleware and routes.               *
- *                                                                                                       *
+ * User - It's an instance of User Model.                                                                *
+ * encrypt - Contains all methods of file AuthAndCipher.js                                               *                                                                                                      *
  *********************************************************************************************************/
 const express = require('express');
 const router = express.Router();
 
 const User = require('../../../models/User'); 
-const encrypt = require('../../../lib/encrypt_decrypt');
-const jwtAuth = require('../../../lib/jwtAuth');
+const encrypt = require('../../../lib/AuthAndCipher');
 
 /****************************************** GET Methods **************************************************/
 
 // Get an user by email
-router.get('/:email', async (req, res, next)=>{
+router.get('/:email', encrypt.jwtAuth(), async (req, res, next)=>{
     try{
         const email = req.params.email;
         const user = await User.getUser(email);
@@ -37,7 +37,7 @@ router.get('/:email', async (req, res, next)=>{
 });
 
 // Get user list
-router.get('/',jwtAuth(), async (req, res, next)=>{
+router.get('/', encrypt.jwtAuth(), async (req, res, next)=>{
     try{
         
         const users = await User.getUsers();
@@ -51,18 +51,22 @@ router.get('/',jwtAuth(), async (req, res, next)=>{
 /****************************************** POST Methods **************************************************/
 
 // Create user
-router.post('/', async (req, res, next) =>{
+router.post('/register', async (req, res, next) =>{
 
     try{
-        
+        // Options of cyphered.
         const cypheredOptions = encrypt.encryptData(req.body.password);
         // Encrypted password
         const pass = cypheredOptions.encrypted;
         // Cyphered key and initialization vector
         delete cypheredOptions.encrypted;
+
+        const name = req.body.name;
+        const email = req.body.email;
+
         
         // Register user
-        const registeredUser = await User.register(req.body.email,pass,cypheredOptions);
+        const registeredUser = await User.register(name, email,pass,cypheredOptions);
         //Response
         res.json({success: true, result: registeredUser});
     }catch(err){
@@ -83,7 +87,7 @@ router.post('/login', (req, res, next) =>{
                 const error = res.__('Error credentials');
                 res.json({success: false, result: error});
             }
-            res.json({success: true, result: result});
+            res.json({result});
         });
         
     } catch (error) {

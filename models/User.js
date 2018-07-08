@@ -13,51 +13,51 @@
  * const userSchema: Schema for User model in tha database.                   *
  * ****************************************************************************/
 
- const mongoose = require('mongoose');
- const userSchema = mongoose.Schema({
-     name: String,
-     firstSurname: String,
-     secondSurname: String,
-     birthday: Date,
-     country: String,
-     province: String,
-     city: String,
-     email:{
-         type: String,
-         unique: true,
-         lowercase: true,
-     },
-     password: String,
-     cypheredOptions: {type: JSON, hide: true},
-     modifiedAt: Date,
-     createdAt: Date
- });
+const mongoose = require('mongoose');
+const userSchema = mongoose.Schema({
+    name: String,
+    firstSurname: String,
+    secondSurname: String,
+    birthday: Date,
+    country: String,
+    province: String,
+    city: String,
+    email: {
+        type: String,
+        unique: true,
+        lowercase: true,
+    },
+    password: String,
+    cypheredOptions: { type: JSON, hiden: true },
+    modifiedAt: Date,
+    createdAt: Date
+});
 
- userSchema.index({email: 1});
+userSchema.index({ email: 1 });
 
- // Register user
- userSchema.statics.register = function (email, password, cypheredOptions){
-    const query = User.create({email:email, password:password, cypheredOptions: cypheredOptions});
+// Register user
+userSchema.statics.register = function (name, email, password, cypheredOptions) {
+    const query = User.create({ name: name, email: email, password: password, cypheredOptions: cypheredOptions });
     return query;
 
 }
- // Get list users
- userSchema.statics.getUsers = function (){
+// Get list users
+userSchema.statics.getUsers = function () {
     const query = User.find({});
     query.select('-password -cypheredOptions');
     return query.exec();
- }
+}
 
- // Get an user
- userSchema.statics.getUser = function (email){
-    const query = User.findOne({email: email});
+// Get an user
+userSchema.statics.getUser = function (email) {
+    const query = User.findOne({ email: email });
     query.select('-password -cypheredOptions');
     return query.exec();
- }
+}
 
 
- // User model
- const User = mongoose.model('User', userSchema);
+// User model
+const User = mongoose.model('User', userSchema);
 
- // Export User model which will be available in the App
- module.exports = User;
+// Export User model which will be available in the App
+module.exports = User;

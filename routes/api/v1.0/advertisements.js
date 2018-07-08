@@ -4,15 +4,12 @@ const express = require('express');
 const router = express.Router();
 
 const Advertisement = require('../../../models/Advertisement'); 
-const jwtAuth = require('../../../lib/jwtAuth');
+const encrypt = require('../../../lib/AuthAndCipher');
 
 // Get all advertisiments or advertisements filtered
-router.get('/',jwtAuth(), async (req, res, next)=>{
+router.get('/',encrypt.jwtAuth(), async (req, res, next)=>{
     try{
-        Advertisement.collection.getIndexes({full: true}).then(indexes => {
-            console.log("indexes:", indexes);
-            
-        }).catch(console.error);
+      
         // Get the param or params for do the query
         const name = req.query.name;
         const tag = req.query.tag;
@@ -58,11 +55,23 @@ router.get('/',jwtAuth(), async (req, res, next)=>{
             filter.user = user; 
         }
 
-        //const agentes = await Agente.list(filter);  // await espera a que se resuelva la promsea y me da el resultado.
         const advertisements = await Advertisement.list(filter, skip, limit, fields,sort);
         res.json({success: true, result: advertisements});
     }catch(err){
         next(err);
+    }
+});
+
+// Get all tags contened in the advertisements
+router.get('/tags', encrypt.jwtAuth(), async (req, res, next) => {
+    try {
+        const tags = await Advertisement.getTags();
+        res.json({
+            success: true,
+            result: tags
+        });
+    } catch(err) {
+        next(err);    
     }
 });
 

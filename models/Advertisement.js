@@ -14,10 +14,6 @@
  * ****************************************************************************/
 
 const mongoose = require('mongoose');
-const User = require('./User');
-const UserSchema = mongoose.SchemaTypes.ObjectId;
-const Item = require('./Item');
-const ItemSchema = mongoose.SchemaTypes.ItemSchema;
 
 
 const advertisementSchema = mongoose.Schema({
@@ -45,6 +41,11 @@ advertisementSchema.statics.list = function(filter, skip, limit,fields,sort){
     // Ejecute the query
     return query.exec();
 }
+
+advertisementSchema.statics.getTags = function() {
+    const query = Advertisement.distinct('tags');
+    return query.exec();
+};
 
 // Advertisement model
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
