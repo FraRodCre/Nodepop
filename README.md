@@ -1,5 +1,6 @@
 # Práctica DevOps
 **Dominio:** https://nodepop.futnoid.es/
+**IP:** 18.210.253.62
 
 # Nodepop API
 Nodepop es una App de publicación de anuncios desarrollada con [**NodeJS**](https://nodejs.org), [**Express**](http://expressjs.com) y el motor de base de datos, [**MongoBD**](https://www.mongodb.com/).
